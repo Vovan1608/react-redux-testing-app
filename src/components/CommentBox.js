@@ -14,9 +14,9 @@ export default () => {
     };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form data-testid='form' onSubmit={onSubmit}>
             <h4>Add a Comment</h4>
-            <textarea value={comment} onChange={onChange} />
+            <textarea data-testid='textarea' value={comment} onChange={onChange} />
             <div>
                 <button>Submit Comment</button>
             </div>
