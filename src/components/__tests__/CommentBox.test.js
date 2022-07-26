@@ -1,5 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 
+import { Provider } from 'react-redux';
+import { legacy_createStore as createStore } from 'redux';
+
+import reducers from '../../reducers';
 import CommentBox from '../CommentBox';
 
 let textarea, button, form;
@@ -7,7 +11,11 @@ let textarea, button, form;
 beforeEach(() => {
     const { getByTestId, getByRole } = screen;
 
-    render(<CommentBox />);
+    render(
+        <Provider store={createStore(reducers)}>
+            <CommentBox />
+        </Provider>
+    );
 
     form = getByTestId('form');
     button = getByRole('button');

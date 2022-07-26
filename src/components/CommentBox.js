@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
 
-export default () => {
+import * as actions from '../actions';
+
+const CommentBox = ({ saveComment }) => {
     const [comment, setComment] = useState('');
 
     const onChange = (e) => {
@@ -11,6 +14,8 @@ export default () => {
         e.preventDefault();
 
         setComment('');
+
+        saveComment(comment);
     };
 
     return (
@@ -23,3 +28,5 @@ export default () => {
         </form>
     );
 };
+
+export default connect(null, actions)(CommentBox);
