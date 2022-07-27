@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Root from '../../Root';
 import CommentBox from '../CommentBox';
 
-let textarea, button, form;
+let textarea, submitButton, form;
 
 beforeEach(() => {
     const { getByTestId, getByRole } = screen;
@@ -15,13 +15,13 @@ beforeEach(() => {
     );
 
     form = getByTestId('form');
-    button = getByRole('button');
+    submitButton = getByRole('button', { name: 'Submit Comment' });
     textarea = getByTestId('textarea');
 });
 
 it('should have textarea and the button', () => {
     expect(textarea).toBeTruthy();
-    expect(button).toBeTruthy();
+    expect(submitButton).toBeTruthy();
 });
 
 it('user can type in the textarea ', () => {
