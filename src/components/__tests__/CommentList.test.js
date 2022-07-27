@@ -31,8 +31,8 @@ it('should create one LI per comment', () => {
 it('should show the text for each comment', () => {
     const commentList = screen.getByRole('list');
 
-    const { getAllByText } = within(commentList);
-    const items = getAllByText(/Test comment [1,2]/i);
+    const { getAllByRole } = within(commentList);
+    const items = getAllByRole('listitem');
 
     expect(items[0].innerHTML).toBe('Test comment 1');
     expect(items[1].innerHTML).toBe('Test comment 2');
