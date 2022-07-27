@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 
-const CommentBox = ({ saveComment, fetchComments }) => {
+const CommentBox = ({ saveComment, fetchComments, auth }) => {
     const [comment, setComment] = useState('');
 
     const onChange = (e) => {
@@ -17,6 +17,16 @@ const CommentBox = ({ saveComment, fetchComments }) => {
 
         saveComment(comment);
     };
+
+    const shouldNavigateAway = () => {
+        if (!auth) {
+            console.log('I need to leave!!!');
+        }
+    };
+
+    useEffect(() => {
+        shouldNavigateAway();
+    }, [auth]);
 
     return (
         <>
@@ -32,4 +42,10 @@ const CommentBox = ({ saveComment, fetchComments }) => {
     );
 };
 
-export default connect(null, actions)(CommentBox);
+const mapStateToProps = ({ auth }) => {
+    return {
+        auth
+    };
+};
+
+export default connect(mapStateToProps, actions)(CommentBox);
