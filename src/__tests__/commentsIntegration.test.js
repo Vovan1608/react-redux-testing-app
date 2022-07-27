@@ -39,7 +39,7 @@ it('should fetch a list of comments', async () => {
 
     const items = queryAllByRole('listitem');
 
-    setTimeout(() => {
+    moxios.wait(() => {
         expect(items.length).toBe(2);
-    }, 1000);
+    });
 });
